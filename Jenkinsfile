@@ -1,8 +1,7 @@
 node {
   try{
-    slackSend channel: '#integration', message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", teamDomain: 'agileworks-tw', token: 'JhXFKEl6cBFoQ4v52BEJw9Mr'
     stage 'checkout project'
-    git url: 'https://github.com/agileworks-tw/spring-boot-sample.git'
+    git url: 'https://github.com/KamRB/gs-spring-boot-complete.git'
 
     stage 'check env'
 
@@ -35,9 +34,7 @@ node {
     stage 'deploy'
     sh 'make deploy-default'
 
-    slackSend channel: '#integration', color: 'good', message: "success ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", teamDomain: 'agileworks-tw', token: 'JhXFKEl6cBFoQ4v52BEJw9Mr'
-  }catch(e){
-    slackSend channel: '#integration', color: 'danger', message: "fail ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", teamDomain: 'agileworks-tw', token: 'JhXFKEl6cBFoQ4v52BEJw9Mr'
+     }catch(e){
     throw e;
   }
 }
